@@ -2,7 +2,7 @@ FROM alpine:3.4
 
 COPY entrypoint.sh /entrypoint.sh
 
-RUN lsa
+RUN ls
 
 RUN chmod +x /entrypoint.sh
 
