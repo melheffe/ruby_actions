@@ -2,6 +2,8 @@ FROM alpine:3.4
 
 COPY entrypoint.sh /entrypoint.sh
 
+RUN lsa
+
 RUN chmod +x /entrypoint.sh
 
 # skip installing gem documentation
