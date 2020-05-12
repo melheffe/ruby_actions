@@ -1,14 +1,14 @@
-name: 'Version file Release composer'
-description: 'Creates Release on every Version file change'
+name: 'Ruby Environment Test'
+description: 'Ruby Environment Test'
 author: 'Chris Rodriguez'
 runs:
   using: 'docker'
   image: 'Dockerfile'
 outputs:
   new_tag:
-    description: 'Release Created'
+    description: 'Ruby Works'
   tag:
-    description: 'A release has been composed after running this action'
+    description: 'Ruby should be working now'
 branding:
   icon: 'git-merge'
-  color: 'blue'
+  color: 'red'
