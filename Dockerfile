@@ -24,6 +24,7 @@ ENV RUBYGEMS_VERSION 2.6.13
 RUN set -ex \
 	\
 	&& apk --update add --no-cache --virtual .ruby-builddeps \
+    gmp-dev \
     git \
     build-base \
     nodejs \
