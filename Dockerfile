@@ -1,38 +1,41 @@
-FROM ruby:2.3.7-alpine3.8
-LABEL Description="Lets test it"
+# sshd
+#
+# VERSION               0.0.1
 
-RUN apk --update add \
-  linux-headers \
-  qt5-qtbase-dev \
-  git \
-  build-base \
-  nodejs \
-  tzdata \
-  postgresql-dev \
-  postgresql-client \
-  libxslt-dev \
-  libxml2-dev \
-  imagemagick \
-  chromium-chromedriver\
-  zlib-dev \
-  chromium \
-  xvfb \
-  wait4ports \
-  xorg-server \
-  dbus \
-  ttf-freefont \
-  mesa-dri-swrast \
-  udev \
-  less
+FROM     drecom/ubuntu-base:latest
+
+MAINTAINER Drecom Technical Development Department <pr_itn@drecom.co.jp>
+
+RUN git clone git://github.com/rbenv/rbenv.git /usr/local/rbenv \
+&&  git clone git://github.com/rbenv/ruby-build.git /usr/local/rbenv/plugins/ruby-build \
+&&  git clone git://github.com/jf/rbenv-gemset.git /usr/local/rbenv/plugins/rbenv-gemset \
+&&  /usr/local/rbenv/plugins/ruby-build/install.sh
+ENV PATH /usr/local/rbenv/bin:$PATH
+ENV RBENV_ROOT /usr/local/rbenv
+
+RUN echo 'export RBENV_ROOT=/usr/local/rbenv' >> /etc/profile.d/rbenv.sh \
+&&  echo 'export PATH=/usr/local/rbenv/bin:$PATH' >> /etc/profile.d/rbenv.sh \
+&&  echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh
+
+RUN echo 'export RBENV_ROOT=/usr/local/rbenv' >> /root/.bashrc \
+&&  echo 'export PATH=/usr/local/rbenv/bin:$PATH' >> /root/.bashrc \
+&&  echo 'eval "$(rbenv init -)"' >> /root/.bashrc
+
+ENV CONFIGURE_OPTS --disable-install-doc
+ENV PATH /usr/local/rbenv/bin:/usr/local/rbenv/shims:$PATH
+
+ENV RBENV_VERSION 2.3.7
+
+RUN eval "$(rbenv init -)"; rbenv install $RBENV_VERSION \
+&&  eval "$(rbenv init -)"; rbenv global $RBENV_VERSION \
+&&  eval "$(rbenv init -)"; gem update --system \
+&&  eval "$(rbenv init -)"; gem install bundler -v 1.17.3 -f \
+&&  rm -rf /tmp/*
 
 RUN \
     # bundler confidurations
     bundle config build.nokogiri "--use-system-libraries" && \
     bundle config github.com KipuDevGemsUser:dNsEPTUWMbTumnphFmtjjGb9tKKbtmxT8 && \
     bundle config enterprise.contribsys.com aa8ac900:18a34bbd && \
-    # Ruby and Rails configuration and dependencies
-    gem install bundler -v 1.17.3 && \
-    gem install capybara -v 3.15.1 && \ 
-    QMAKE=/usr/lib/qt5/bin/qmake gem install capybara-webkit -v 1.15.1
 
 ENTRYPOINT ["entrypoint.sh"]
