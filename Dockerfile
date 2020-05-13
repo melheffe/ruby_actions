@@ -111,8 +111,8 @@ RUN set -ex \
 	\
 	&& gem update --system "$RUBYGEMS_VERSION"
 
-RUN QMAKE=/usr/lib/qt5/bin/qmake gem install capybara-webkit && \
-gem update && gem update --system && gem cleanup
+RUN apk add qt5-qtwebkit-dev \
+    QMAKE=/usr/lib/qt5/bin/qmake gem install capybara-webkit
 
 ENV BUNDLER_VERSION 1.17.3
 
