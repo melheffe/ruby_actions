@@ -32,6 +32,6 @@ RUN \
     bundle config enterprise.contribsys.com aa8ac900:18a34bbd && \
     # Ruby and Rails configuration and dependencies
     gem install bundler -v 1.17.3 && \
-    QMAKE=/usr/lib/qt5/bin/qmake gem install capybara-webkit
+    QMAKE=/usr/lib/qt5/bin/qmake gem install capybara-webkit -v 1.15.1
 
 ENTRYPOINT ["entrypoint.sh"]
