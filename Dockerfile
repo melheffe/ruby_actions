@@ -1,10 +1,10 @@
 FROM alpine:3.4
 
-COPY entrypoint.sh /entrypoint.sh
+COPY entrypoint.rb /entrypoint.rb
 
 RUN ls
 
-RUN chmod +x /entrypoint.sh
+RUN chmod +x /entrypoint.rb
 
 # skip installing gem documentation
 RUN mkdir -p /usr/local/etc \
@@ -115,4 +115,4 @@ ENV PATH $BUNDLE_BIN:$PATH
 RUN mkdir -p "$GEM_HOME" "$BUNDLE_BIN" \
 	&& chmod 777 "$GEM_HOME" "$BUNDLE_BIN"
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.rb"]
