@@ -30,6 +30,7 @@ RUN \
     bundle config github.com KipuDevGemsUser:dNsEPTUWMbTumnphFmtjjGb9tKKbtmxT8 && \
     bundle config enterprise.contribsys.com aa8ac900:18a34bbd && \
     # Ruby and Rails configuration and dependencies
-    gem install bundler -v 1.17.3
+    gem install bundler -v 1.17.3 \ 
+    /bin/sh -c QMAKE=/usr/lib/qt5/bin/qmake gem install capybara-webkit
 
 ENTRYPOINT ["entrypoint.sh"]
