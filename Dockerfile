@@ -6,6 +6,10 @@ FROM     drecom/ubuntu-base:latest
 
 MAINTAINER Drecom Technical Development Department <pr_itn@drecom.co.jp>
 
+COPY entrypoint.sh /entrypoint.sh
+
+RUN chmod +x /entrypoint.sh
+
 RUN git clone git://github.com/rbenv/rbenv.git /usr/local/rbenv \
 &&  git clone git://github.com/rbenv/ruby-build.git /usr/local/rbenv/plugins/ruby-build \
 &&  git clone git://github.com/jf/rbenv-gemset.git /usr/local/rbenv/plugins/rbenv-gemset \
@@ -33,13 +37,9 @@ RUN eval "$(rbenv init -)"; rbenv install $RBENV_VERSION \
 &&  rm -rf /tmp/*
 
 RUN \
-    # bundler confidurations
+    # bundler configurations
     bundle config build.nokogiri "--use-system-libraries" && \
     bundle config github.com KipuDevGemsUser:dNsEPTUWMbTumnphFmtjjGb9tKKbtmxT8 && \
     bundle config enterprise.contribsys.com aa8ac900:18a34bbd
-
-COPY entrypoint.sh /entrypoint.sh
-
-RUN chmod +x entrypoint.sh    
 
 ENTRYPOINT ["entrypoint.sh"]
