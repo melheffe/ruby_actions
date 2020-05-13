@@ -23,7 +23,15 @@ ENV RUBYGEMS_VERSION 2.6.13
 # readline-dev vs libedit-dev: https://bugs.ruby-lang.org/issues/11869 and https://github.com/docker-library/ruby/issues/75
 RUN set -ex \
 	\
-	&& apk add --no-cache --virtual .ruby-builddeps \
+	&& apk --update add --no-cache --virtual .ruby-builddeps \
+    git \
+    build-base \
+    nodejs \
+    tzdata \
+    postgresql-dev \
+    postgresql-client \
+    imagemagick \
+    chromium-chromedriver \
 		autoconf \
 		bison \
 		bzip2 \
@@ -101,7 +109,7 @@ RUN set -ex \
 	&& rm -r /usr/src/ruby \
 	\
 	&& gem update --system "$RUBYGEMS_VERSION"
-	
+
 RUN QMAKE=/usr/lib/qt5/bin/qmake gem install capybara-webkit && \
 gem update && gem update --system && gem cleanup
 
@@ -119,7 +127,5 @@ ENV BUNDLE_PATH="$GEM_HOME" \
 ENV PATH $BUNDLE_BIN:$PATH
 RUN mkdir -p "$GEM_HOME" "$BUNDLE_BIN" \
 	&& chmod 777 "$GEM_HOME" "$BUNDLE_BIN"
-	
-RUN apk add --no-cache git
 
 ENTRYPOINT ["/entrypoint.sh"]
