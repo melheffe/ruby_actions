@@ -36,6 +36,8 @@ RUN set -ex \
 		glib-dev \
 		libc-dev \
 		libffi-dev \
+		qt5-qtwebkit-dev \
+		xvfb \
 		openssl \
 		openssl-dev \
 		libxml2-dev \
@@ -99,6 +101,9 @@ RUN set -ex \
 	&& rm -r /usr/src/ruby \
 	\
 	&& gem update --system "$RUBYGEMS_VERSION"
+	
+RUN QMAKE=/usr/lib/qt5/bin/qmake gem install capybara-webkit && \
+gem update && gem update --system && gem cleanup
 
 ENV BUNDLER_VERSION 1.17.3
 
