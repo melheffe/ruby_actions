@@ -38,4 +38,8 @@ RUN \
     bundle config github.com KipuDevGemsUser:dNsEPTUWMbTumnphFmtjjGb9tKKbtmxT8 && \
     bundle config enterprise.contribsys.com aa8ac900:18a34bbd
 
+COPY entrypoint.sh /entrypoint.sh
+
+RUN chmod +x entrypoint.sh    
+
 ENTRYPOINT ["entrypoint.sh"]
