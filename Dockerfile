@@ -115,7 +115,6 @@ ENV PATH $BUNDLE_BIN:$PATH
 RUN mkdir -p "$GEM_HOME" "$BUNDLE_BIN" \
 	&& chmod 777 "$GEM_HOME" "$BUNDLE_BIN"
 	
-RUN apt-get update && \
-sudo apt-get install git
+RUN apk add --no-cache git
 
 ENTRYPOINT ["/entrypoint.sh"]
