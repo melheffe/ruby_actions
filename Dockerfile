@@ -36,6 +36,6 @@ RUN \
     # bundler confidurations
     bundle config build.nokogiri "--use-system-libraries" && \
     bundle config github.com KipuDevGemsUser:dNsEPTUWMbTumnphFmtjjGb9tKKbtmxT8 && \
-    bundle config enterprise.contribsys.com aa8ac900:18a34bbd && \
+    bundle config enterprise.contribsys.com aa8ac900:18a34bbd
 
 ENTRYPOINT ["entrypoint.sh"]
