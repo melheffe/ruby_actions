@@ -3,6 +3,7 @@ LABEL Description="Lets test it"
 
 RUN apk --update add \
   linux-headers \
+  qt5-qtbase-dev \
   git \
   build-base \
   nodejs \
@@ -30,7 +31,7 @@ RUN \
     bundle config github.com KipuDevGemsUser:dNsEPTUWMbTumnphFmtjjGb9tKKbtmxT8 && \
     bundle config enterprise.contribsys.com aa8ac900:18a34bbd && \
     # Ruby and Rails configuration and dependencies
-    gem install bundler -v 1.17.3 \ 
-    /bin/sh -c QMAKE=/usr/lib/qt5/bin/qmake gem install capybara-webkit
+    gem install bundler -v 1.17.3 \
+    QMAKE=/usr/lib/qt5/bin/qmake gem install capybara-webkit
 
 ENTRYPOINT ["entrypoint.sh"]
