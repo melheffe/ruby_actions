@@ -10,4 +10,4 @@ bundle install
 
 bundle exec rake db:test:prepare
 
-bundle exec rspec --pattern spec/features/*_spec.rb
+bundle exec rspec
