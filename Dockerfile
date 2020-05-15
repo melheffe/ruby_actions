@@ -14,9 +14,7 @@ RUN apt-get update && apt-get install -y \
   libpq-dev \
   imagemagick \
   nodejs
-
-USER kipuadmin
-
+  
 RUN \
     # bundler configurations
     bundle config build.nokogiri "--use-system-libraries" && \
