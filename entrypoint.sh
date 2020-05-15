@@ -2,12 +2,6 @@
 
 cd $GITHUB_WORKSPACE/
 
-ruby --version
-gem --version
-echo "Hello World!"
-
 bundle install
 
-bundle exec rake db:test:prepare
-
-bundle exec rspec
+KNAPSACK_PRO_CI_NODE_TOTAL=$KNAPSACK_PRO_CI_NODE_TOTAL KNAPSACK_PRO_CI_NODE_INDEX=$KNAPSACK_PRO_CI_NODE_INDEX bundle exec rake knapsack_pro:rspec
