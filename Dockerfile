@@ -4,7 +4,9 @@ COPY entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
 
-RUN chmod 777 -R /log/
+RUN \
+	sudo rm -R /home/kipuadmin/actions-runner/_work/hm-actions/hm-actions/log/ \
+	sudo rm -R /home/kipuadmin/actions-runner/_work/hm-actions/hm-actions/tmp/
 
 RUN apt-get update && apt-get install -y \
 	qt5-default \
