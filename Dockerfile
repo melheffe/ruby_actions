@@ -4,6 +4,8 @@ COPY entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
 
+RUN chmod 777 -R /log/
+
 RUN apt-get update && apt-get install -y \
 	qt5-default \
 	libqt5webkit5-dev \
