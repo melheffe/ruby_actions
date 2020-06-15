@@ -15,9 +15,9 @@ RUN apt-get update && apt-get install -y \
 
 RUN \
     # install google chrome latest
-    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - && \
-    sudo sh -c 'echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' && \
-    sudo apt-get install google-chrome-stable
+    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
+    sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' && \
+    apt-get update && apt-get install google-chrome-stable --assume-yes
   
 RUN \
     # bundler configurations
