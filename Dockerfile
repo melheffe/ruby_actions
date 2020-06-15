@@ -5,15 +5,19 @@ COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 RUN apt-get update && apt-get install -y \
-	qt5-default \
-	libqt5webkit5-dev \
 	streamer1.0-plugins-base \
 	gstreamer1.0-tools \
 	gstreamer1.0-x \
 	xvfb \
-  libpq-dev \
-  imagemagick \
-  nodejs
+  	libpq-dev \
+  	imagemagick \
+  	nodejs
+
+RUN \
+    # install google chrome latest
+    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - && \
+    sudo sh -c 'echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' && \
+    sudo apt-get install google-chrome-stable
   
 RUN \
     # bundler configurations
