@@ -25,4 +25,6 @@ RUN \
     bundle config github.com KipuDevGemsUser:dNsEPTUWMbTumnphFmtjjGb9tKKbtmxT8 && \
     bundle config enterprise.contribsys.com aa8ac900:18a34bbd
 
+ENV REDISCLOUD_URL 'rediss://master.rspec-development.nstgdu.use1.cache.amazonaws.com:6379'
+
 ENTRYPOINT ["/entrypoint.sh"]
